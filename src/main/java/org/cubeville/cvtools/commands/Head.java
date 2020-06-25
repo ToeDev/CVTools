@@ -41,7 +41,7 @@ public class Head extends BaseCommand {
         else {
             throw new CommandExecutionException("Player parameter must be set if using on console.");
         }
-        String command = "minecraft:give " + player.getName() + " skull 1 3 {display:{Name:\"" + ColorUtils.addColor(name) + "\"},SkullOwner:{Id:\"" + uuid + "\", Properties:{textures:[{Value:\"" + url + "\"}]}}}";
+        String command = "minecraft:give " + player.getName() + " minecraft:player_head{display:{Name:\"" + ColorUtils.addColor(name) + "\"},SkullOwner:{Id:\"" + uuid + "\", Properties:{textures:[{Value:\"" + url + "\"}]}}}";
         System.out.println("Execute command: " + command);
         Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), command);
         return null;
