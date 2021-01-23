@@ -36,14 +36,20 @@ public class CVTools extends JavaPlugin implements Listener {
         commandParser.addCommand(new CheckEntities());
         commandParser.addCommand(new CheckRegionPlayers());
         commandParser.addCommand(new CheckSign());
+        commandParser.addCommand(new Clear());
         commandParser.addCommand(new DelayedTask(this));
         commandParser.addCommand(new FindBlocks());
         commandParser.addCommand(new Head());
         commandParser.addCommand(new Info());
+        commandParser.addCommand(new Item());
         commandParser.addCommand(new Itemname());
         commandParser.addCommand(new KillEntities());
+        commandParser.addCommand(new More());
         commandParser.addCommand(new PathBlockUtil());
+        commandParser.addCommand(new Time());
+        commandParser.addCommand(new TimeSet());
         commandParser.addCommand(new Title());
+        commandParser.addCommand(new Weather());
 
         PluginManager pm = getServer().getPluginManager();
         pm.registerEvents(this, this);

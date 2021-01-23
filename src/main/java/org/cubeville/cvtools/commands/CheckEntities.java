@@ -118,7 +118,7 @@ public class CheckEntities extends Command {
         EntityType type = entity.getType();
         if(type == EntityType.SHEEP || type == EntityType.CHICKEN || type == EntityType.COW || type == EntityType.RABBIT || type == EntityType.PIG || type == EntityType.MUSHROOM_COW ||
            type == EntityType.VILLAGER || type == EntityType.HORSE || type == EntityType.WOLF || type == EntityType.OCELOT || type == EntityType.IRON_GOLEM ||
-           type == EntityType.SNOWMAN || type == EntityType.PIG_ZOMBIE || type == EntityType.ZOMBIE || type == EntityType.SKELETON || type == EntityType.SPIDER ||
+           type == EntityType.SNOWMAN || type == EntityType.PIGLIN || type == EntityType.ZOMBIE || type == EntityType.SKELETON || type == EntityType.SPIDER ||
            type == EntityType.CAVE_SPIDER || type == EntityType.SKELETON_HORSE || type == EntityType.GUARDIAN) {
             return true;
         }

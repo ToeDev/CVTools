@@ -57,8 +57,11 @@ public class CommandParser
                             commandSender.sendMessage(ColorUtils.addColor("&cNothing. Nada. Niente."));
                         }
                         else {
-                            for (String message: response.getMessages())
-                                commandSender.sendMessage(ColorUtils.addColor(message));
+                            for (String message: response.getMessages()) {
+                                if(!message.equals("")) {
+                                    commandSender.sendMessage(ColorUtils.addColor(message));
+                                }
+                            }
                         }
                     }
                 }

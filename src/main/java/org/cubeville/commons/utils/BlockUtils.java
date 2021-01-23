@@ -19,6 +19,7 @@ import com.sk89q.worldedit.regions.selector.CuboidRegionSelector;
 
 import com.sk89q.worldedit.IncompleteRegionException;
 import com.sk89q.worldguard.WorldGuard;
+import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import com.sk89q.worldguard.protection.managers.RegionManager;
 import com.sk89q.worldguard.protection.regions.RegionContainer;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
@@ -141,7 +142,7 @@ public class BlockUtils {
 
     public static Region getWESelection(Player player) {
         WorldEditPlugin worldEdit = (WorldEditPlugin) Bukkit.getServer().getPluginManager().getPlugin("WorldEdit");
-        Region selection;
+        Region selection = null;
         try {
             selection = worldEdit.getSession(player).getSelection(worldEdit.getSession(player).getSelectionWorld());
         }
@@ -163,6 +164,7 @@ public class BlockUtils {
     }
 
     public static ProtectedRegion getWGRegion(World world, String name) {
+        WorldGuardPlugin worldGuard = (WorldGuardPlugin) Bukkit.getServer().getPluginManager().getPlugin("WorldGuard");
         RegionContainer container = WorldGuard.getInstance().getPlatform().getRegionContainer();
         RegionManager regionManager = container.get(BukkitAdapter.adapt(world));
         ProtectedRegion region = regionManager.getRegion(name);
@@ -180,6 +182,26 @@ public class BlockUtils {
         return new Vector(max.getX(), max.getY(), max.getZ());
     }
 
+    public static boolean isInRegion(String region, Location loc) {
+        try {
+            ProtectedRegion r = getWGRegion(loc.getWorld(), region);
+            return r.contains(BlockVector3.at(loc.getBlockX(), loc.getBlockY(), loc.getBlockZ()));
+        }
+        catch(IllegalArgumentException e) {
+            return false;
+        }
+    }
+
+    public static String findApplicableRegion(Set<String> regions, Location location) {
+        List<String> ret = new ArrayList<>();
+        for(String region: regions) {
+            if(isInRegion(region, location)) {
+                return region;
+            }
+        }
+        return null;
+    }
+    
     public static List<Block> getBlocksInRadiusByType(Location loc, int radius, Material... mats) {
         List<Block> blocks = getBlocksInRadius(loc, radius);
         return getBlocksByType(blocks, mats);
