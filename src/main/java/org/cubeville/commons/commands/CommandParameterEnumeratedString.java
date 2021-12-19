@@ -16,6 +16,13 @@ public class CommandParameterEnumeratedString implements CommandParameterType
         values.add(value1);
         values.add(value2);
     }
+
+    public CommandParameterEnumeratedString(String value1, String value2, String value3) {
+        values = new HashSet<>();
+        values.add(value1);
+        values.add(value2);
+        values.add(value3);
+    }
     
     public boolean isValid(String value) {
         return values.contains(value);
