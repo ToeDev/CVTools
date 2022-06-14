@@ -49,9 +49,17 @@ public abstract class BaseCommand
     public void setPermission(String permission) {
         this.permission = permission;
     }
+
+    public String getPermission() {
+        return this.permission;
+    }
     
     public void addFlag(String flag) {
         flags.add(flag);
+    }
+
+    public Set<String> getFlags() {
+        return this.flags;
     }
 
     public void addBaseParameter(CommandParameterType type) {
@@ -60,8 +68,16 @@ public abstract class BaseCommand
         mandatoryBase++;
     }
 
+    public List<CommandParameterType> getBase() {
+        return this.base;
+    }
+
     public void addOptionalBaseParameter(CommandParameterType type) {
         base.add(type);
+    }
+
+    public Map<String, CommandParameterType> getOptional() {
+        return this.optional;
     }
     
     public void addParameter(String name, boolean optional, CommandParameterType type) {
@@ -71,6 +87,10 @@ public abstract class BaseCommand
         else {
             mandatory.put(name, type);
         }
+    }
+
+    public Map<String, CommandParameterType> getMandatory() {
+        return this.mandatory;
     }
 
     public int checkCommand(String[] args) {

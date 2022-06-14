@@ -1,8 +1,6 @@
 package org.cubeville.cvtools;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
@@ -85,4 +83,7 @@ public class CVTools extends JavaPlugin implements Listener {
         return false;
     }
 
+    public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
+        return commandParser.getCompletions(sender, args);
+    }
 }
